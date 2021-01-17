@@ -40,8 +40,32 @@ def divide_bit(dividend: int, divisor: int) -> int:
             dividendabs -= divisor << i
     return min((1 << 31) - 1, result) if sign else -result
 
+# 内存优化版本
+def divide_bit_test(dividend:int,divisor:int) ->int:
+    sign=False
+    if (dividend==0):
+        return 0
+
+    #记住 符号位 0正数 1负数
+    if (dividend^divisor)<0:
+        sign=True
+
+    divideend=abs(dividend)
+    divisor=abs(divisor)
+    times=0
+    for i in range(31,-1,-1):
+        if((divideend>>i)>=divisor):
+            times+=1<<i
+            divideend-=divisor<<i
+
+    return -times if sign else min((1<<31)-1,times)
+
+
+
 
 # print(divide(10,3))
-print(divide_bit(-2147483648,-1))
+print(-1^1)
+# print(divide_bit(-2147483648,-1))
+# print(divide_bit_test(-2147483648,-1))
 
 
