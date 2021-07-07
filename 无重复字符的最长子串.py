@@ -1,5 +1,4 @@
 class Solution:
-
     def lengthOfLongestSubstring_demo(self, s: str) -> int:
         length=len(s)
         if(length==0):
@@ -15,7 +14,6 @@ class Solution:
                 strtmplist=strtmplist[strtmplist.index(s[i])+1:i]
                 strtmplist.append(s[i])
             i += 1
-
         return maxlength
 
 
